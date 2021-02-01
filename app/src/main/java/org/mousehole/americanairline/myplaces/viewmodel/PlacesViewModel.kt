@@ -1,22 +1,11 @@
 package org.mousehole.americanairline.myplaces.viewmodel
 
-import android.app.Application
-import android.graphics.Color
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
-import android.os.Looper
-import androidx.annotation.MainThread
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.android.gms.maps.model.BitmapDescriptor
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
-import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import org.mousehole.americanairline.myplaces.R
 import org.mousehole.americanairline.myplaces.model.Location
 import org.mousehole.americanairline.myplaces.model.Locations
 import org.mousehole.americanairline.myplaces.model.Type
@@ -24,7 +13,6 @@ import org.mousehole.americanairline.myplaces.network.PlacesRetrofit
 import org.mousehole.americanairline.myplaces.network.model.PlacesResult
 import org.mousehole.americanairline.myplaces.utils.MyLogger.debug
 import org.mousehole.americanairline.myplaces.utils.Radius
-import org.mousehole.americanairline.myplaces.view.MainActivity
 
 object PlacesViewModel : ViewModel() {
 
@@ -34,7 +22,7 @@ object PlacesViewModel : ViewModel() {
     private fun subscriptionService(type:Type) : (PlacesResult) -> Unit {
         return {  pr: PlacesResult ->
             debug("True response is: $pr")
-            val locations: Locations = Locations(pr.results.map { u ->
+            val locations = Locations(pr.results.map { u ->
                 debug("Response is: $u")
                 val t = u.geometry.location
                 Location(t.lat, t.lng, u.name, type)

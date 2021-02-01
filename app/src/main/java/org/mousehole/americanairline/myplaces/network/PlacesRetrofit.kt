@@ -1,13 +1,12 @@
+@file:Suppress("SpellCheckingInspection")
+
 package org.mousehole.americanairline.myplaces.network
 
-import android.app.Application
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.mousehole.americanairline.myplaces.R
 import org.mousehole.americanairline.myplaces.model.Location
-import org.mousehole.americanairline.myplaces.model.Locations
-import org.mousehole.americanairline.myplaces.model.Type
 import org.mousehole.americanairline.myplaces.network.model.PlacesResult
 import org.mousehole.americanairline.myplaces.utils.Constants.BASE_URL
 import org.mousehole.americanairline.myplaces.utils.MyLogger.debug
@@ -21,13 +20,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 // ?location=30,120&radius=100&key=AIzaSyDTYwHqalAU_kLcVvBM62_RwxRIPnQcY2I
 object PlacesRetrofit {
 
-    fun client(): OkHttpClient {
+    private fun client(): OkHttpClient {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         return OkHttpClient.Builder().addInterceptor(interceptor).build()
     }
 
-    private val apiKey: String by lazy<String> {
+    private val apiKey: String by lazy {
         MainActivity.getActivity().getString(R.string.google_maps_key)
     }
 

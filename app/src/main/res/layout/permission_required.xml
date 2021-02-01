@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#EDB4F6"
     android:clickable="true"
     android:focusable="true"
-    android:id="@+id/permission_layout">
+    android:id="@+id/permission_layout"
+    tools:ignore="Overdraw">
 
     <TextView
         android:layout_width="match_parent"

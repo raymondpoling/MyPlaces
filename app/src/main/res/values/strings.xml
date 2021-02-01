@@ -7,7 +7,8 @@
     <string name="restaurant">Restaurants</string>
     <string name="cafe">Cafes</string>
     <string name="tourist_attraction">Tourist Attractions</string>
-    <string name="convenicence_store">Convenience Stores</string>
+    <string name="convenience_store">Convenience Stores</string>
     <string name="art_gallery">Art Galleries</string>
     <string name="museum">Museums</string>
+    <string name="no_longer_text">No longer text!</string>
 </resources>

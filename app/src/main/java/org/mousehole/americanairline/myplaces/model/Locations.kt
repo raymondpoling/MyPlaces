@@ -4,7 +4,7 @@ import org.mousehole.americanairline.myplaces.R
 import java.util.*
 
 enum class Type(val resourceId:Int, val color:Int) {
-    AQUARIUM(R.mipmap.ic_acquarium, R.color.aquarium_aqua),
+    AQUARIUM(R.mipmap.ic_aquarium, R.color.aquarium_aqua),
     ART_GALLERY(R.mipmap.ic_art_gallery, R.color.art_yellow),
     CAFE(R.mipmap.ic_cafe, R.color.cafe_brown),
     CONVENIENCE_STORE(R.mipmap.ic_convenience_store, R.color.convenience_gray),
@@ -19,15 +19,15 @@ enum class Type(val resourceId:Int, val color:Int) {
     companion object {
         fun fromResourceId(resourceId: Int): Type {
             return when (resourceId) {
-                R.id.aquarium_id -> Type.AQUARIUM
-                R.id.art_gallery_id -> Type.ART_GALLERY
-                R.id.cafe_id -> Type.CAFE
-                R.id.convenience_id -> Type.CONVENIENCE_STORE
-                R.id.museum_id -> Type.MUSEUM
-                R.id.park_id -> Type.PARK
-                R.id.restaurant_id -> Type.RESTAURANT
-                R.id.tourist_id -> Type.TOURIST_ATTRACTION
-                else -> Type.UNKNOWN
+                R.id.aquarium_id -> AQUARIUM
+                R.id.art_gallery_id -> ART_GALLERY
+                R.id.cafe_id -> CAFE
+                R.id.convenience_id -> CONVENIENCE_STORE
+                R.id.museum_id -> MUSEUM
+                R.id.park_id -> PARK
+                R.id.restaurant_id -> RESTAURANT
+                R.id.tourist_id -> TOURIST_ATTRACTION
+                else -> UNKNOWN
             }
         }
     }

@@ -1,28 +1,22 @@
 package org.mousehole.americanairline.myplaces.view
 
 import android.graphics.Color
-import android.graphics.drawable.Drawable
-import androidx.fragment.app.Fragment
-
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
-import androidx.core.graphics.alpha
-
+import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.*
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.CircleOptions
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import org.mousehole.americanairline.myplaces.R
 import org.mousehole.americanairline.myplaces.model.Location
-import org.mousehole.americanairline.myplaces.model.Locations
-import org.mousehole.americanairline.myplaces.model.Type
 import org.mousehole.americanairline.myplaces.utils.MyLogger.debug
 import org.mousehole.americanairline.myplaces.viewmodel.PlacesViewModel
-import java.util.concurrent.atomic.AtomicBoolean
 
 class MapsFragment : Fragment() {
 
@@ -62,7 +56,7 @@ class MapsFragment : Fragment() {
                     .strokeColor(Color.BLACK)
                     .strokeWidth(1f)
                     .fillColor(color)
-                    .radius(it.second.toDouble()))
+                    .radius(it.second))
             googleMap.addMarker(MarkerOptions()
                     .title("Myself")
                     .position(it.first))

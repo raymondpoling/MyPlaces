@@ -1,3 +1,5 @@
+@file:Suppress("SpellCheckingInspection")
+
 package org.mousehole.americanairline.myplaces.view
 
 import android.Manifest
@@ -6,20 +8,14 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.os.Bundle
-import android.util.Log
-import android.view.DragEvent
 import android.view.MenuItem
-import android.view.View
 import android.widget.ImageView
 import android.widget.PopupMenu
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.MenuPopupWindow
 import androidx.core.app.ActivityCompat
 import com.google.android.material.slider.Slider
 import org.mousehole.americanairline.myplaces.R
 import org.mousehole.americanairline.myplaces.broadcastreceiver.LocationReceiver
-import org.mousehole.americanairline.myplaces.model.Location
 import org.mousehole.americanairline.myplaces.model.Type
 import org.mousehole.americanairline.myplaces.utils.MyLogger
 import org.mousehole.americanairline.myplaces.utils.MyLogger.debug
@@ -105,7 +101,7 @@ class MainActivity : AppCompatActivity(), LocationReceiver.TypeGiver, PopupMenu.
                     ) {
                         requestLocationPermission()
                     } else {
-                        // at this point let the user know that they have to enable permsssion
+                        // at this point let the user know that they have to enable permission
                         // manually to use this application
                         debug("No more requests")
                         supportFragmentManager
@@ -120,7 +116,7 @@ class MainActivity : AppCompatActivity(), LocationReceiver.TypeGiver, PopupMenu.
                 }
             }
             else ->
-                debug( "Unreqquested permission $requestCode requested")
+                debug( "Unrequested permission $requestCode requested")
         }
     }
 
