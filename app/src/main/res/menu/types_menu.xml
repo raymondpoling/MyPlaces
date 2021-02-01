@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/aquarium_id"
+        android:icon="@mipmap/ic_acquarium"
+        android:title="@string/aquarium"/>
+    <item
+        android:id="@+id/art_gallery_id"
+        android:icon="@mipmap/ic_art_gallery"
+        android:title="@string/art_gallery"/>
+    <item
+        android:id="@+id/cafe_id"
+        android:icon="@mipmap/ic_cafe"
+        android:title="@string/cafe"/>
+    <item
+        android:id="@+id/convenience_id"
+        android:icon="@mipmap/ic_convenience_store"
+        android:title="@string/convenicence_store"/>
+    <item
+        android:id="@+id/museum_id"
+        android:icon="@mipmap/ic_museum"
+        android:title="@string/museum"/>
+    <item
+        android:id="@+id/park_id"
+        android:icon="@mipmap/ic_park"
+        android:title="@string/park"/>
+    <item
+        android:id="@+id/restaurant_id"
+        android:icon="@mipmap/ic_restaurant"
+        android:title="@string/restaurant"/>
+    <item
+        android:id="@+id/tourist_id"
+        android:icon="@mipmap/ic_tourist_attraction"
+        android:title="@string/tourist_attraction"/>
+
+</menu>

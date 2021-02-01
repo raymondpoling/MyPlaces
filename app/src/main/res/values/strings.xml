@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="please_enable_location_services_to_use_this_app">PLEASE ENABLE LOCATION SERVICES TO USE THIS APP!</string>
+    <string name="menu_button">menu button</string>
+    <string name="aquarium">Aquariums</string>
+    <string name="park">Parks</string>
+    <string name="restaurant">Restaurants</string>
+    <string name="cafe">Cafes</string>
+    <string name="tourist_attraction">Tourist Attractions</string>
+    <string name="convenicence_store">Convenience Stores</string>
+    <string name="art_gallery">Art Galleries</string>
+    <string name="museum">Museums</string>
+</resources>
