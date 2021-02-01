@@ -45,28 +45,29 @@ class MapsFragment : Fragment() {
         })
         PlacesViewModel.getLocation().observe(this, {
             googleMap.clear()
-            debug("Map at [${it.first}]")
+            val (latLng, radius, type) = it
+            debug("Map at [$latLng]")
             if(firstRun) {
                 firstRun = false
                 googleMap.moveCamera(CameraUpdateFactory.zoomTo(13.5f))
-                googleMap.moveCamera(CameraUpdateFactory.newLatLng(it.first))
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
             }
-            val color = resources.getColor(it.third.color)
-            googleMap.addCircle(CircleOptions().center(it.first)
+            val color = resources.getColor(type.color)
+            googleMap.addCircle(CircleOptions().center(latLng)
                     .strokeColor(Color.BLACK)
                     .strokeWidth(1f)
                     .fillColor(color)
-                    .radius(it.second))
+                    .radius(radius))
             googleMap.addMarker(MarkerOptions()
                     .title("Myself")
-                    .position(it.first))
+                    .position(latLng))
             debug("Places view Model markers and circles should be added here!!!!!!!!!1")
             val location = Location(
-                    it.first.latitude,
-                    it.first.longitude,
+                    latLng.latitude,
+                    latLng.longitude,
                     "Myself",
-                    it.third)
-            PlacesViewModel.getNearbyPlaces(location, it.second, it.third)
+                    type)
+            PlacesViewModel.getNearbyPlaces(location, radius, type)
         })
     }
 
