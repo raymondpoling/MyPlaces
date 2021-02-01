@@ -70,21 +70,6 @@ object PlacesViewModel : ViewModel() {
         return placesLiveData
     }
 
-    fun getTypeIcon(type:Type) : Pair<BitmapDescriptor, Int> {
-        val t : Pair<Int,Int> = when (type) {
-            Type.AQUARIUM -> (R.mipmap.ic_acquarium to R.color.aquarium_aqua)
-            Type.ART_GALLERY -> (R.mipmap.ic_art_gallery to R.color.art_yellow)
-            Type.TOURIST_ATTRACTION -> (R.mipmap.ic_tourist_attraction to R.color.tourist_white)
-            Type.CAFE -> (R.mipmap.ic_cafe to R.color.cafe_brown)
-            Type.CONVENIENCE_STORE -> (R.mipmap.ic_convenience_store to R.color.convenience_gray)
-            Type.MUSEUM -> (R.mipmap.ic_museum to R.color.museum_purple)
-            Type.PARK -> (R.mipmap.ic_park to R.color.park_green)
-            Type.RESTAURANT -> (R.mipmap.ic_restaurant to R.color.restaurant_red)
-            else -> (R.mipmap.ic_unknown_red to Color.TRANSPARENT)
-        }
-        return BitmapDescriptorFactory.fromResource(t.first) to t.second
-    }
-
     fun getPlacesData() = placesLiveData
 
     // current location

@@ -3,7 +3,7 @@
     <item
         android:id="@+id/aquarium_id"
         android:icon="@mipmap/ic_acquarium"
-        android:title="@string/aquarium"/>
+        android:title="@string/aquarium" />
     <item
         android:id="@+id/art_gallery_id"
         android:icon="@mipmap/ic_art_gallery"

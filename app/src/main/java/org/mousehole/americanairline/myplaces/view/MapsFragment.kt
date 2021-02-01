@@ -15,10 +15,7 @@ import androidx.core.graphics.alpha
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptor
-import com.google.android.gms.maps.model.CircleOptions
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import org.mousehole.americanairline.myplaces.R
 import org.mousehole.americanairline.myplaces.model.Location
 import org.mousehole.americanairline.myplaces.model.Locations
@@ -44,7 +41,7 @@ class MapsFragment : Fragment() {
         PlacesViewModel.getPlacesData().observe(this, {
 //            googleMap.clear()
             val (locations, type) = it
-            val (icon, color) = PlacesViewModel.getTypeIcon(type)
+            val icon = BitmapDescriptorFactory.fromResource(type.resourceId)
             locations.locations.forEach { t ->
                 googleMap.addMarker(MarkerOptions()
                         .title(t.name)
@@ -60,7 +57,7 @@ class MapsFragment : Fragment() {
                 googleMap.moveCamera(CameraUpdateFactory.zoomTo(13.5f))
                 googleMap.moveCamera(CameraUpdateFactory.newLatLng(it.first))
             }
-            val (_,color) = PlacesViewModel.getTypeIcon(it.third)
+            val color = resources.getColor(it.third.color)
             googleMap.addCircle(CircleOptions().center(it.first)
                     .strokeColor(Color.BLACK)
                     .strokeWidth(1f)

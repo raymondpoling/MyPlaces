@@ -158,17 +158,7 @@ class MainActivity : AppCompatActivity(), LocationReceiver.TypeGiver, PopupMenu.
     }
 
     override fun onMenuItemClick(item: MenuItem): Boolean {
-        type = when (item.itemId) {
-            R.id.aquarium_id -> Type.AQUARIUM
-            R.id.art_gallery_id -> Type.ART_GALLERY
-            R.id.cafe_id -> Type.CAFE
-            R.id.convenience_id -> Type.CONVENIENCE_STORE
-            R.id.museum_id -> Type.MUSEUM
-            R.id.park_id -> Type.PARK
-            R.id.restaurant_id -> Type.RESTAURANT
-            R.id.tourist_id -> Type.TOURIST_ATTRACTION
-            else -> Type.UNKNOWN
-        }
+        type = Type.fromResourceId(item.itemId)
         val latLng = PlacesViewModel.getCurrentLocation()
         debug("Got lat/lng of [$latLng] with type [${getType()}]")
         PlacesViewModel
