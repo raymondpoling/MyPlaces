@@ -32,7 +32,20 @@ enum class Type(val resourceId:Int, val color:Int) {
         }
     }
 }
-data class Location(val lat:Double, val long: Double, val name: String, val type: Type) {
+enum class BusinessStatus(val alpha: Float) {
+    OPERATIONAL(1f),
+    CLOSED_TEMPORARILY(0.5f),
+    CLOSED_PERMANENTLY(0.1f);
+    companion object {
+        fun fromString(str:String) =
+                when(str) {
+                    "OPERATIONAL" -> OPERATIONAL
+                    "CLOSED_PERMANENTLY" -> CLOSED_PERMANENTLY
+                    else -> CLOSED_TEMPORARILY
+                }
+    }
+}
+data class Location(val lat:Double, val long: Double, val name: String, val type: Type, val businessStatus: BusinessStatus?) {
     override fun toString(): String {
         return "$lat,$long"
     }

@@ -40,6 +40,7 @@ class MapsFragment : Fragment() {
                 googleMap.addMarker(MarkerOptions()
                         .title(t.name)
                         .position(LatLng(t.lat, t.long))
+                        .alpha(t.businessStatus?.alpha?:.5f)
                         .icon(icon))
             }
         })
@@ -66,7 +67,8 @@ class MapsFragment : Fragment() {
                     latLng.latitude,
                     latLng.longitude,
                     "Myself",
-                    type)
+                    type,
+                    null)
             PlacesViewModel.getNearbyPlaces(location, radius, type)
         })
     }

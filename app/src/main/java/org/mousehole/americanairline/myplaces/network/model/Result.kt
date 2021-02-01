@@ -1,7 +1,7 @@
 package org.mousehole.americanairline.myplaces.network.model
 
 data class Result(
-    val business_status: String,
+    val business_status: String?,
     val geometry: Geometry,
     val icon: String,
     val name: String,

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.google.android.gms.maps.model.LatLng
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import org.mousehole.americanairline.myplaces.model.BusinessStatus
 import org.mousehole.americanairline.myplaces.model.Location
 import org.mousehole.americanairline.myplaces.model.Locations
 import org.mousehole.americanairline.myplaces.model.Type
@@ -25,7 +26,8 @@ object PlacesViewModel : ViewModel() {
             val locations = Locations(pr.results.map { u ->
                 debug("Response is: $u")
                 val t = u.geometry.location
-                Location(t.lat, t.lng, u.name, type)
+                Location(t.lat, t.lng, u.name, type,
+                        u.business_status?.let (BusinessStatus::fromString))
             })
             placesLiveData.postValue(locations to type)
             compositeDisposable.clear()
@@ -44,7 +46,7 @@ object PlacesViewModel : ViewModel() {
                 .getNearbyPlaces(location, radius)
                 .observeOn(Schedulers.io())
                 .subscribeOn(Schedulers.io())
-                .subscribe(subscriptionService(location.type)))
+                .subscribe(subscriptionService(type)))
         return placesLiveData
     }
 
