@@ -45,7 +45,13 @@ enum class BusinessStatus(val alpha: Float) {
                 }
     }
 }
-data class Location(val lat:Double, val long: Double, val name: String, val type: Type, val businessStatus: BusinessStatus?) {
+data class Location(val lat:Double,
+                    val long: Double,
+                    val placeId: String,
+                    val name: String,
+                    val type: Type,
+                    val photoIds: List<String>,
+                    val businessStatus: BusinessStatus?) {
     override fun toString(): String {
         return "$lat,$long"
     }

@@ -2,13 +2,22 @@
 
 package org.mousehole.americanairline.myplaces.network
 
+import androidx.lifecycle.LiveData
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.mousehole.americanairline.myplaces.R
 import org.mousehole.americanairline.myplaces.model.Location
-import org.mousehole.americanairline.myplaces.network.model.PlacesResult
+import org.mousehole.americanairline.myplaces.network.model.geocoding.GeocodingResponse
+import org.mousehole.americanairline.myplaces.network.model.places.PlacesResult
+import org.mousehole.americanairline.myplaces.utils.Constants.API_KEY
 import org.mousehole.americanairline.myplaces.utils.Constants.BASE_URL
+import org.mousehole.americanairline.myplaces.utils.Constants.DESIRED_HEIGHT
+import org.mousehole.americanairline.myplaces.utils.Constants.DESIRED_WIDTH
+import org.mousehole.americanairline.myplaces.utils.Constants.HEIGHT
+import org.mousehole.americanairline.myplaces.utils.Constants.PHOTO_ID
+import org.mousehole.americanairline.myplaces.utils.Constants.PHOTO_URL
+import org.mousehole.americanairline.myplaces.utils.Constants.WIDTH
 import org.mousehole.americanairline.myplaces.utils.MyLogger.debug
 import org.mousehole.americanairline.myplaces.utils.Radius
 import org.mousehole.americanairline.myplaces.view.MainActivity
@@ -53,4 +62,11 @@ object PlacesRetrofit {
             pageToken
         )
     }
+
+    fun getPhoto(photoId:String) = BASE_URL +
+            PHOTO_URL +
+            "?$API_KEY=$apiKey&$HEIGHT=$DESIRED_HEIGHT&$WIDTH=$DESIRED_WIDTH&$PHOTO_ID=$photoId"
+
+    fun getAddress(placesId:String) : Observable<GeocodingResponse> =
+            placesAPI.getAddress(apiKey, placesId)
 }

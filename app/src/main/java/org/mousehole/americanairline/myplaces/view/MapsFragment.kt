@@ -22,6 +22,8 @@ class MapsFragment : Fragment() {
 
     private var firstRun = true
 
+    private val placeFragment = PlaceFragment()
+
     private val callback = OnMapReadyCallback { googleMap ->
         /**
          * Manipulates the map once available.
@@ -37,11 +39,12 @@ class MapsFragment : Fragment() {
             val (locations, type) = it
             val icon = BitmapDescriptorFactory.fromResource(type.resourceId)
             locations.locations.forEach { t ->
+                val latLng = LatLng(t.lat, t.long)
                 googleMap.addMarker(MarkerOptions()
                         .title(t.name)
-                        .position(LatLng(t.lat, t.long))
+                        .position(latLng)
                         .alpha(t.businessStatus?.alpha?:.5f)
-                        .icon(icon))
+                        .icon(icon)).tag = t
             }
         })
         PlacesViewModel.getLocation().observe(this, {
@@ -66,11 +69,30 @@ class MapsFragment : Fragment() {
             val location = Location(
                     latLng.latitude,
                     latLng.longitude,
+                    "",
                     "Myself",
                     type,
+                    listOf(),
                     null)
             PlacesViewModel.getNearbyPlaces(location, radius, type)
         })
+        googleMap.setOnInfoWindowClickListener {
+            debug("Clicked on ${it.tag}")
+            val location = (it.tag as Location)
+            val latLng = "${location.lat},${location.long}"
+            val bundle = Bundle()
+            bundle.putString("name",location.name)
+            bundle.putString("placeId", location.placeId)
+            bundle.putString("latLng", latLng)
+            bundle.putStringArrayList("photos", ArrayList(location.photoIds))
+            placeFragment.arguments = bundle
+
+            parentFragmentManager
+                    .beginTransaction()
+                    .add(R.id.map_fragment, placeFragment)
+                    .addToBackStack(placeFragment.tag)
+                    .commit()
+        }
     }
 
     override fun onCreateView(

@@ -1,4 +1,4 @@
-package org.mousehole.americanairline.myplaces.network.model
+package org.mousehole.americanairline.myplaces.network.model.places
 
 data class Photo(
     val height: Int,
