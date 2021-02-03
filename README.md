@@ -14,3 +14,16 @@ Application should also use a SeekBar to determine the radius
 use RxJava
 - Be implemented in MVVM architecture
 - Have a unique implementation by each developer
+
+## Implementation Details
+- Each attraction has its own colored radius to make it easier to recall what the user is searching, and the area covered
+- Camera zooms in on startup only, allowing for free exploration but also simplifying the starting point
+- Icons make it easy to distinguish activity
+- Locations that may not be open are faded to make it simpler to select open locations to visit
+
+## Basic display
+Basic option
+![Basic display](screenshot-1.png)
+
+Place Display
+![Place card](screenshot-2.png)
