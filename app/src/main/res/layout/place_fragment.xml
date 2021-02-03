@@ -5,8 +5,7 @@
     android:focusable="true"
     android:clickable="true"
     android:elevation="32dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/top_guideline"

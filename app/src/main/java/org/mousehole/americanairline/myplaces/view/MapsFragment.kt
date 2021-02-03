@@ -1,7 +1,9 @@
 package org.mousehole.americanairline.myplaces.view
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
+import android.provider.ContactsContract.CommonDataKinds.Photo.PHOTO
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +17,9 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import org.mousehole.americanairline.myplaces.R
 import org.mousehole.americanairline.myplaces.model.Location
+import org.mousehole.americanairline.myplaces.utils.Constants.LATLNG
+import org.mousehole.americanairline.myplaces.utils.Constants.NAME
+import org.mousehole.americanairline.myplaces.utils.Constants.PLACE_ID
 import org.mousehole.americanairline.myplaces.utils.MyLogger.debug
 import org.mousehole.americanairline.myplaces.viewmodel.PlacesViewModel
 
@@ -24,6 +29,7 @@ class MapsFragment : Fragment() {
 
     private val placeFragment = PlaceFragment()
 
+    @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
         /**
          * Manipulates the map once available.
@@ -49,6 +55,7 @@ class MapsFragment : Fragment() {
         })
         PlacesViewModel.getLocation().observe(this, {
             googleMap.clear()
+            googleMap.isMyLocationEnabled = true
             val (latLng, radius, type) = it
             debug("Map at [$latLng]")
             if(firstRun) {
@@ -62,9 +69,9 @@ class MapsFragment : Fragment() {
                     .strokeWidth(1f)
                     .fillColor(color)
                     .radius(radius))
-            googleMap.addMarker(MarkerOptions()
-                    .title("Myself")
-                    .position(latLng))
+//            googleMap.addMarker(MarkerOptions()
+//                    .title("Myself")
+//                    .position(latLng))
             debug("Places view Model markers and circles should be added here!!!!!!!!!1")
             val location = Location(
                     latLng.latitude,
@@ -72,7 +79,7 @@ class MapsFragment : Fragment() {
                     "",
                     "Myself",
                     type,
-                    listOf(),
+                    "",
                     null)
             PlacesViewModel.getNearbyPlaces(location, radius, type)
         })
@@ -81,15 +88,15 @@ class MapsFragment : Fragment() {
             val location = (it.tag as Location)
             val latLng = "${location.lat},${location.long}"
             val bundle = Bundle()
-            bundle.putString("name",location.name)
-            bundle.putString("placeId", location.placeId)
-            bundle.putString("latLng", latLng)
-            bundle.putStringArrayList("photos", ArrayList(location.photoIds))
+            bundle.putString(NAME,location.name)
+            bundle.putString(PLACE_ID, location.placeId)
+            bundle.putString(LATLNG, latLng)
+            bundle.putString(PHOTO, location.photoId)
             placeFragment.arguments = bundle
 
             parentFragmentManager
                     .beginTransaction()
-                    .add(R.id.map_fragment, placeFragment)
+                    .add(R.id.overlay_fragment, placeFragment)
                     .addToBackStack(placeFragment.tag)
                     .commit()
         }

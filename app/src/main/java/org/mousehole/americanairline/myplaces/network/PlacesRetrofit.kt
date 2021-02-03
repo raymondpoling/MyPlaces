@@ -2,7 +2,6 @@
 
 package org.mousehole.americanairline.myplaces.network
 
-import androidx.lifecycle.LiveData
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

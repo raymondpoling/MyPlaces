@@ -26,7 +26,7 @@ object PlacesViewModel : ViewModel() {
                 debug("Place Location: ${u.place_id}")
                 val t = u.geometry.location
                 Location(t.lat, t.lng, u.place_id, u.name, type,
-                        u.photos?.map{ it.photo_reference }?: listOf(),
+                        u.photos?.map{it.photo_reference}?.firstOrNull(),
                         u.business_status?.let (BusinessStatus::fromString))
             })
             placesLiveData.postValue(locations to type)

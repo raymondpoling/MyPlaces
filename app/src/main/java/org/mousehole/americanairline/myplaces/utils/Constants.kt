@@ -26,4 +26,8 @@ object Constants {
 
     // Geocoding
     const val PLACE_ID = "place_id"
+
+    // argument strings
+    const val NAME = "name"
+    const val LATLNG = "latLng"
 }

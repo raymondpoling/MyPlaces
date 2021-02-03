@@ -3,6 +3,7 @@ package org.mousehole.americanairline.myplaces.view
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.ContactsContract.CommonDataKinds.Photo.PHOTO
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,9 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import org.mousehole.americanairline.myplaces.R
 import org.mousehole.americanairline.myplaces.network.PlacesRetrofit
+import org.mousehole.americanairline.myplaces.utils.Constants.LATLNG
+import org.mousehole.americanairline.myplaces.utils.Constants.NAME
+import org.mousehole.americanairline.myplaces.utils.Constants.PLACE_ID
 import org.mousehole.americanairline.myplaces.utils.MyLogger.debug
 import org.mousehole.americanairline.myplaces.viewmodel.PlacesViewModel
 
@@ -38,22 +42,27 @@ class PlaceFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        name = arguments?.getString("name", "No Name")?:"No Name"
-        val placeId = arguments?.getString("placeId")
-        val latLng = arguments?.getString("latLng")
+        name = arguments?.getString(NAME, "No Name")?:"No Name"
+        val placeId = arguments?.getString(PLACE_ID)
+        val latLng = arguments?.getString(LATLNG)
 
         nameTextView = view.findViewById(R.id.name_textview)
         addressTextView = view.findViewById(R.id.address_textview)
         addressTextView.text = "No Address Available"
         photoImageView = view.findViewById(R.id.photo_imageview)
 
-        val photos = arguments?.getStringArrayList("photos")?: listOf("https://www.publicdomainpictures.net/en/view-image.php?image=270609&picture=not-found-image")
+        val photo = arguments?.getString(PHOTO)
 
-        debug("Got photo list size: ${photos.size}")
-        if(photos.size > 0) {
-            Glide.with(this).load(PlacesRetrofit.getPhoto(photos[0])).into(photoImageView)
-        } else {
-            Glide.with(this).load(R.mipmap.ic_not_found).into(photoImageView)
+        debug("Got photo list size: $photo")
+        when(photo) {
+            null ->
+                Glide.with(this)
+                        .load(R.mipmap.ic_not_found)
+                        .into(photoImageView)
+            else ->
+                Glide.with(this)
+                        .load(PlacesRetrofit.getPhoto(photo))
+                        .into(photoImageView)
         }
 
         placeLiveData.observe(viewLifecycleOwner, {

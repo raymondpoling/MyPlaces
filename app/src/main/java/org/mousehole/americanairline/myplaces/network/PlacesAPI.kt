@@ -1,7 +1,6 @@
 package org.mousehole.americanairline.myplaces.network
 
 import io.reactivex.Observable
-import org.mousehole.americanairline.myplaces.model.AddressData
 import org.mousehole.americanairline.myplaces.network.model.geocoding.GeocodingResponse
 import org.mousehole.americanairline.myplaces.network.model.places.PlacesResult
 import org.mousehole.americanairline.myplaces.utils.Constants.API_KEY

@@ -50,7 +50,7 @@ data class Location(val lat:Double,
                     val placeId: String,
                     val name: String,
                     val type: Type,
-                    val photoIds: List<String>,
+                    val photoId: String?,
                     val businessStatus: BusinessStatus?) {
     override fun toString(): String {
         return "$lat,$long"
